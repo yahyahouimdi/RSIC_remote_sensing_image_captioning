@@ -1,0 +1,105 @@
+Training Results Summary
+
+The Stage 2 training was conducted over 30 epochs using mixed precision (AMP) and gradient accumulation (effective batch size = 32). The model was trained on a large dataset with 5190 batches per epoch, and the training process was stable across all epochs with a gradually decreasing learning rate schedule.
+
+1. Training Stability and Convergence
+The training loss consistently decreased from 0.0110 → 0.0025, showing strong convergence.
+The optimization process remained stable without divergence or oscillations.
+Learning rate scheduling progressively reduced the learning rate from 1e-4 to near 0, enabling fine-tuning in later epochs.
+2. Validation Performance Evolution
+
+The model was evaluated regularly using standard image captioning metrics:
+
+CIDEr (primary metric): improved steadily from 4.11 → 9.88 (best)
+BLEU-4: improved from 8.47 → ~15.30 peak, then stabilized around ~13
+ROUGE-L: improved from 30.39 → ~39.35 peak, stabilizing around ~36–37
+METEOR: remained near 0 (likely due to implementation or tokenization limitations)
+3. Best Model Performance
+The best checkpoint was achieved at Epoch 12
+Corresponding results:
+CIDEr: 9.88 (best score)
+BLEU-4: 15.30
+ROUGE-L: 39.35
+
+After this point, performance slightly fluctuated but did not significantly improve further, indicating convergence.
+
+4. Qualitative Observations
+Early epochs produced highly generic captions.
+Mid-training outputs became more structured and relevant to aerial scenes (e.g., airports, runways, buildings).
+Later epochs showed some regression in linguistic quality, with repetitive or less coherent phrases despite stable loss values.
+5. Overall Assessment
+The model successfully learned meaningful visual representations of remote sensing scenes.
+It demonstrates strong improvement in semantic alignment between images and captions.
+However, the plateau after Epoch 12 suggests:
+possible overfitting,
+or limited capacity of the language generation head,
+or need for stronger decoding / regularization strategies.
+
+🟦 Early Training (Epoch 2–4) — Weak semantic alignment
+
+At this stage, captions are mostly generic and poorly grounded in the image content:
+
+Ground Truth (example):
+
+“the tarmac and airport runways divide the field into several orderly arranged rounded rectangles next to which is buildings and a road”
+
+Model output:
+
+“many buildings are near a airport where outside in another area northwest of the near a nearby airport outside where but some buildings”
+
+➡️ Observation:
+
+Repetitive phrases (“near a airport”, “outside”)
+Weak spatial reasoning
+Incorrect object relationships
+🟨 Mid Training (Epoch 8–12) — Emerging structure
+
+Captions start to reflect correct scene concepts (airports, planes, buildings), but remain noisy:
+
+Ground Truth:
+
+airport runways, buildings, parking area
+
+Model output:
+
+“many planes are near a terminal in an airport nearby where another outside but they so even not because those these where but”
+
+➡️ Observation:
+
+Correct domain understanding (airport, planes, terminal)
+Still grammatically broken
+High redundancy and hallucinated words
+🟩 Best Performance Phase (Epoch 12–16)
+
+This is where your model performs best in CIDEr.
+
+Ground Truth:
+
+airport with runways, buildings, parking lot
+
+Model output:
+
+“many planes are in an airport near some buildings and green trees parking few these those many planes some airplanes are near the”
+
+➡️ Observation:
+
+Strong semantic grounding
+Correct detection of key objects (planes, airport, buildings)
+Still lacks fluent sentence structure
+🟧 Late Training (Epoch 20–30) — Slight degradation / drift
+
+Even though loss keeps decreasing, text quality becomes less stable:
+
+Ground Truth:
+
+airport runways, buildings, road
+
+Model output:
+
+“some planes are near an airport nearby village another a large building a one an airport a another but only this area near”
+
+➡️ Observation:
+
+More fragmented sentences
+Repetition increases again
+Slight semantic drift (“village”, “large building” introduced incorrectly)

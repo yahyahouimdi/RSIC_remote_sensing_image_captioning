@@ -1,0 +1,132 @@
+🔹 CRISP-DM
+
+It’s essentially a structured workflow for data-driven projects, adapted here for deep learning.
+
+🧭 Big Picture
+
+The idea is simple:
+
+You don’t just train a model once — you iterate continuously between data, model, and evaluation until you reach good performance.
+
+CRISP-DM breaks this into 6 phases, and your text explains how each applies to your project.
+
+🔁 Why “Iterative”?
+
+Unlike a linear pipeline, you often go backward:
+
+Bad results → rethink model
+Model issues → adjust data
+Data limitations → redefine goals
+📌 Phase-by-Phase Explanation
+1. 🧠 Business Understanding
+
+👉 Define the goal of the project
+
+Task: Generate captions from remote sensing images
+Type: Supervised image captioning
+Success metrics:
+BLEU-4
+CIDEr
+
+📌 If results are poor:
+→ You may need to change objectives or expectations
+
+2. 🔍 Data Understanding
+
+👉 Analyze your datasets before using them
+
+You study:
+
+Caption length
+Vocabulary size
+Class imbalance
+
+Examples:
+
+Sydney-Captions → small → risk of overfitting
+RSICD → diverse vocabulary → harder NLP problem
+
+📌 Insight:
+→ Data properties directly affect model design
+
+3. 🛠️ Data Preparation
+
+👉 Clean and transform data for training
+
+Images:
+Resize to 224×224
+Normalize (ImageNet stats)
+Augmentation (flip, color jitter)
+Text:
+Tokenization
+Lowercasing
+Padding
+Replace rare words with <UNK>
+
+📌 Important:
+This phase is highly iterative
+→ If training fails → come back and fix preprocessing
+
+4. 🤖 Modelling
+
+👉 Build and train the model
+
+Steps:
+
+Reproduce baseline (TSFE)
+Improve architecture:
+Replace encoder → SwinV2
+Replace decoder → Transformer (instead of LSTM)
+
+📌 Key insight:
+
+~80% of time is spent between Data Preparation ↔ Modelling
+
+5. 📊 Evaluation
+
+👉 Measure performance
+
+Metrics used:
+
+BLEU-4
+METEOR
+ROUGE-L
+CIDEr
+
+You also do:
+
+Ablation studies → test each modification separately
+
+📌 If results are bad:
+
+Go back to:
+Business Understanding (wrong goal?)
+Modelling (wrong architecture?)
+6. 🚀 Deployment Perspective
+
+👉 Think about real-world usage (even if academic)
+
+You consider:
+
+Speed (latency)
+Memory usage
+Hardware constraints
+
+Examples:
+
+Choose SwinV2-Base vs Large
+Choose Transformer depth (L = 4 vs 6)
+🧩 Final Understanding
+
+This section is basically saying:
+
+“Here is the structured methodology we followed to build, improve, and evaluate our deep learning model, with continuous feedback between steps.”
+
+🧠 Intuitive Summary
+Start with a goal
+Understand your data
+Prepare it
+Train a model
+Evaluate it
+Improve it (loop back 🔁)
+Consider real-world constraints

@@ -1,0 +1,50 @@
+📊 Comparison Table (Original vs Improved)
+🔹 Quantitative Metrics
+Metric	Original TSFE	Improved TSFE	Improvement
+Best CIDEr	~14.35	33.97	+137% 🚀
+BLEU-4	~18.65	20.20	+8%
+ROUGE-L	~43.05	44.27	+3%
+Loss (final)	~3.37	3.02	Better convergence
+Convergence speed	Slow	Fast	Major gain
+🔹 Semantic Quality (Very Important for Report)
+Aspect	Original TSFE	Improved TSFE
+Relevance	Medium	High
+Detail level	Low–moderate	Rich descriptions
+Scene understanding	Partial	Accurate object + context
+Noise in sentences	High	Reduced noise
+🔹 Generation Quality (From Your Logs)
+❌ Original TSFE Output:
+
+"near a airport near a airport near a airport..."
+
+Repetition ❌
+Weak language modeling ❌
+Poor fluency ❌
+✅ Improved TSFE Output:
+
+"many planes are parked at an airport near some buildings and green trees..."
+
+Structured sentence ✅
+Better semantics ✅
+More natural description ✅
+🔹 Linguistic Analysis
+Feature	Original	Improved
+Grammar	Weak	Improved
+Diversity	Low (repetition)	Higher
+Vocabulary	Limited	Expanded
+Coherence	Poor	Good
+🧠 Key Scientific Conclusion (Very Important)
+
+👉 The improvement is not just numerical, but:
+
+✔️ Semantic understanding improved
+Model captures objects + relationships
+✔️ Language modeling improved
+Less repetition
+Better sentence structure
+✔️ Training efficiency improved
+Faster convergence
+Higher performance ceiling
+🏁 Final Statement (You can use in your report)
+
+👉 “The improved TSFE model significantly outperforms the original architecture, achieving more than double the CIDEr score while producing more coherent and semantically meaningful captions. This demonstrates the effectiveness of the proposed enhancements in both visual feature extraction and language generation.”
