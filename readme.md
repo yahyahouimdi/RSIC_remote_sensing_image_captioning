@@ -232,23 +232,107 @@ A remaining limitation: decoding operates in GloVe embedding space, so small ina
 
 ```
 .
-├── dataset/
-│   └── images/                   # RSICD / UCM / Sydney image data
-├── existing_architecture_docs/   # Reference papers / notes on CRSR, MSR-CapNet, PCSFTr, TSFE
-├── figures/                      # All report figures (referenced above)
-├── glove.6B/                     # Pretrained GloVe word embeddings (300d)
-├── images/                       # Misc. project images
-├── notebooks/
-│   ├── CNN+LSTM/
-│   │   └── assets/               # Initial ResNet+LSTM baseline prototype
-│   ├── TSFE/                     # Reproduced original TSFE (Swin-Base + LSTM)
-│   └── TSFE_enhanced/            # Proposed model (SwinV2-Base + Transformer decoder)
-├── presentations/                # Slide decks
-├── resultat/                     # Training curves, checkpoints, generated captions
-├── txt/                          # Vocabulary / caption text files
-├── final_report.pdf              # Full end-of-year project report
-└── README.md                     # This file
+
+├── 📂 dataset_example/                       # Lightweight example subset (GitHub-friendly)
+│   ├── images/                               # Balanced sample from each category (30 images)
+│   └── captions.json                         # Corresponding captions for example images
+│
+├── 📂 existing_architecture_docs/            # Literature & analysis
+│   ├── *.pdf                                 # Reference papers (CRSR, MSR-CapNet, PCSFTr, TSFE)
+│   └── readme.md                             # Brief summaries of each architecture
+│
+├── 📂 figures/                               # All report figures & visualizations
+│   ├── TSFE.png                              # Original architecture diagram
+│   ├── Transform_Archi.png                   # Enhanced architecture diagram
+│   ├── tsfe_comparison.png                   # Training curves (baseline vs. improved)
+│   ├── remote_sensing_samples.jpg            # RSICD dataset examples
+│   ├── UCM.png, Sydney.png                   # Other dataset samples
+│   ├── CRISP-DM.png                          # Methodology framework
+│   ├── work_breakdown.png, gantt.png         # Project planning
+│   └── (other visualizations)
+│
+├── 📂 glove.68_example/                      # Lightweight GloVe copy (GitHub-friendly)
+│   ├── glove.6B.50d.txt
+│   ├── glove.6B.100d.txt
+│   ├── glove.6B.200d.txt
+│   ├── glove.6B.300d.txt
+│   └── readme.md                             # GloVe resource guide & download instructions
+│
+├── 📂 notebooks/                             # Jupyter notebooks for different phases
+│   │
+│   ├── 📂 CNN+LSTM/                          # Phase 1: Initial baseline exploration
+│   │   ├── CNN+LSTM.ipynb                    # Data pipeline testing & setup
+│   │   ├── readme.md                         # Notebook guide
+│   │   └── 📂 assets/                        # Supporting files & visualizations
+│   │
+│   ├── 📂 TSFE/                              # Phase 2: Original TSFE reproduction
+│   │   ├── tsfe-base-architecture.ipynb      # Reproduced TSFE (Swin-Base + LSTM)
+│   │   ├── readme.md                         # Implementation & results
+│   │   └── training logs
+│   │
+│   └── 📂 TSFE_enhanced/                     # Phase 3: Proposed improvements
+│       ├── tsfe-enhanced-version.ipynb       # Enhanced model (SwinV2-Base + Transformer)
+│       ├── readme.md                         # Enhancement details & results
+│       └── training logs
+│
+├── 📂 presentations/                         # Supervisory & progress presentations
+│   ├── (presentation slides from various dates)
+│   └── readme.md                             # Overview of all presentations
+│
+├── 📂 results/                               # Training outputs & evaluation
+│   ├── example_1.png, example_2.png          # Generated caption examples
+│   ├── training_curves.png                   # Loss & metric plots
+│   ├── checkpoints/                          # Model weights
+│   └── readme.md                             # Results summary & metrics table
+│
+├── 📂 understandings/                        # Research notes & learning docs
+│   ├── CRISP-DM_understanding.txt            # Project methodology notes
+│   ├── comparaison.txt                       # Architecture comparison notes
+│   ├── training_enhanced_result.txt          # Training results documentation
+│   └── readme.md                             # Index of understanding documents
+│
+├── 📂 TSFE_Fast_api/                         # Inference API server
+│   ├── main.py                               # FastAPI application
+│   ├── model.py                              # Model loading & inference logic
+│   ├── inference.py                          # Inference utilities
+│   ├── requirements.txt                      # Python dependencies
+│   └── 📂 checkpoints/                       # Saved model weights
+│       ├── config.json                       # Model config
+│       ├── idx2word.json                     # Vocabulary mapping
+│       ├── word2idx.json                     # Reverse vocabulary
+│       └── tsfe_best.pth                     # Trained model checkpoint
+│
+├── TSFE_Architecture.py                      # Model architecture definitions
+├── final_report.pdf                          # Complete end-of-year project report
+└── README.md                                 # This file (main project overview)
 ```
+
+### 📖 Repository Guide
+
+**For getting started:**
+- Start with [`README.md`](./README.md) (this file) for project overview
+- Read [`notebooks/CNN+LSTM/readme.md`](./notebooks/CNN+LSTM/readme.md) for data pipeline
+- Check [`notebooks/TSFE/readme.md`](./notebooks/TSFE/readme.md) for original model
+- Review [`notebooks/TSFE_enhanced/readme.md`](./notebooks/TSFE_enhanced/readme.md) for proposed improvements
+
+**For dataset setup:**
+- Use [`dataset_example/`](./dataset_example/) for quick testing (50 images)
+- Download full RSICD from Kaggle for production training
+- See [`dataset_example/readme.md`](./dataset/readme.md) for dataset details
+
+**For embeddings:**
+- Use [`glove.68_example/`](./glove.68_example/) as a lightweight reference
+- Download full GloVe 6B from [Stanford NLP](https://nlp.stanford.edu/projects/glove/) for complete word coverage
+- See [`glove.68_example/readme.md`](./glove.68_example/readme.md) for usage guide
+
+**For model deployment:**
+- See [`TSFE_Fast_api/`](./TSFE_Fast_api/) for the inference server
+- Pre-trained checkpoints are included in `TSFE_Fast_api/checkpoints/`
+
+**For literature & architecture details:**
+- Browse [`existing_architecture_docs/readme.md`](./existing_architecture_docs/readme.md) for paper summaries
+- See [`figures/`](./figures/) for architecture diagrams and results
+- Read [`final_report.pdf`](./final_report.pdf) for complete technical documentation (36 references)
 
 ---
 
